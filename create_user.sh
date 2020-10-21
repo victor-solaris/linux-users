@@ -63,15 +63,13 @@ else
 fi
 
 for (( i=1; i<=MAX; i++ ));do
- 
-  x=$(( STARTUID + i)) 
   
   banner="\n***** ""$USERNAME""$i"" ********************************************\n"
   
   if  ! grep -q "$USERNAME""$i" "/etc/passwd"; 
     then
       echo -e "$banner"
-      /usr/sbin/useradd -u $x -e "$(date -d "$EXPIRE days" +"%Y-%m-%d")" -g "$GROUP" -m "$USERNAME""$i" 2>&1 | tee -a "$0".log;
+      /usr/sbin/useradd -e "$(date -d "$EXPIRE days" +"%Y-%m-%d")" -g "$GROUP" -m "$USERNAME""$i" 2>&1 | tee -a "$0".log;
       echo -e "User account created.\n" 
       
       password="$(openssl rand -base64 8 | cut -b -10)"
