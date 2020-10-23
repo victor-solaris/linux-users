@@ -23,8 +23,6 @@ MAX="$3"
 EXPIRE="$4"
 MYPASS="$5"
 
-STARTUID=5000
-
 re1='^[0-9]'
 if [[ $USERNAME =~ $re1 ]]; then 
   echo -e "\nERROR: Username cannot start with a number."
